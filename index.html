@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JPDP | Perancangan Strategik 2027</title>
+
+  <style>
+    :root {
+      --navy: #030c1b;
+      --blue: #00d9ff;
+      --gold: #e8bf67;
+      --white: #f5f8ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--navy);
+      color: var(--white);
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* DIGITAL BACKGROUND */
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse at 50% 45%,
+          #07355b 0%, #06162d 45%, #020713 90%);
+    }
+
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(#00d9ff12 1px, transparent 1px),
+        linear-gradient(90deg, #00d9ff12 1px, transparent 1px);
+      background-size: 45px 45px;
+      transform: perspective(600px) rotateX(35deg) scale(1.5);
+      opacity: .45;
+    }
+
+    .scanline {
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      top: -5%;
+      background: linear-gradient(90deg,
+        transparent, var(--blue), transparent);
+      box-shadow: 0 0 25px var(--blue);
+      animation: scan 8s linear infinite;
+      opacity: .45;
+    }
+
+    @keyframes scan {
+      to { top: 105%; }
+    }
+
+    /* HEADER */
+    header {
+      padding: 25px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ffffff20;
+    }
+
+    .brand {
+      color: var(--gold);
+      font-weight: bold;
+      letter-spacing: 3px;
+      font-size: 19px;
+    }
+
+    .status {
+      color: var(--blue);
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    .status::before {
+      content: "● ";
+      color: #42ffb1;
+    }
+
+    /* MAIN COVER */
+    .hero {
+      min-height: 88vh;
+      padding: 65px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .content {
+      max-width: 950px;
+      animation: appear 1.5s ease both;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .topline {
+      color: var(--blue);
+      font-size: 12px;
+      letter-spacing: 5px;
+      margin-bottom: 25px;
+    }
+
+    /* RADAR */
+    .radar {
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 35px;
+      position: relative;
+      border-radius: 50%;
+      border: 1px solid #00d9ff75;
+      box-shadow:
+        0 0 35px #00d9ff22,
+        inset 0 0 35px #00d9ff16;
+      background:
+        radial-gradient(circle,
+          #00d9ff15 2px,
+          transparent 3px),
+        repeating-radial-gradient(circle,
+          transparent 0 35px,
+          #00d9ff35 36px,
+          transparent 37px);
+      overflow: hidden;
+    }
+
+    .radar::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(
+        transparent 0deg,
+        transparent 260deg,
+        #00d9ff08 310deg,
+        #00d9ff90 360deg
+      );
+      animation: rotate 5s linear infinite;
+    }
+
+    .radar::after {
+      content: "JPDP";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-weight: bold;
+      letter-spacing: 5px;
+      color: var(--gold);
+      text-shadow: 0 0 15px #e8bf6780;
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 60px);
+      line-height: 1.25;
+      margin: 0;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    h1 span {
+      color: var(--gold);
+      text-shadow: 0 0 25px #e8bf6730;
+    }
+
+    .department {
+      font-size: clamp(13px, 2vw, 19px);
+      letter-spacing: 3px;
+      margin-top: 25px;
+      color: #c9d8e9;
+      line-height: 1.8;
+    }
+
+    .year {
+      margin: 25px auto;
+      font-size: clamp(65px, 14vw, 140px);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: 8px;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--gold);
+      text-shadow: 0 0 45px #e8bf6730;
+    }
+
+    .tagline {
+      color: var(--blue);
+      letter-spacing: 3px;
+      font-size: 12px;
+      margin-bottom: 40px;
+    }
+
+    .access-btn {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      padding: 18px 35px;
+      color: #07101d;
+      background: linear-gradient(
+        120deg, #bd9144, #f5d993, #bd9144);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13px;
+      letter-spacing: 2px;
+      transition: .3s;
+      cursor: pointer;
+    }
+
+    .access-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 35px #e8bf6770;
+    }
+
+    .footer-text {
+      margin-top: 35px;
+      color: #7189a2;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    /* BOOK PROGRAM DEMO */
+    .program {
+      padding: 80px 7%;
+      background: #041326;
+      border-top: 1px solid #e8bf6750;
+    }
+
+    .program h2 {
+      color: var(--gold);
+      text-align: center;
+      letter-spacing: 3px;
+    }
+
+    .program p {
+      color: #aebed0;
+      text-align: center;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+      max-width: 1000px;
+      margin: 40px auto;
+    }
+
+    .menu-card {
+      padding: 35px 20px;
+      border: 1px solid #00d9ff45;
+      background: #071d35;
+      text-align: center;
+      color: white;
+      border-radius: 8px;
+      transition: .3s;
+    }
+
+    .menu-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-5px);
+    }
+
+    .menu-card strong {
+      display: block;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 20px; }
+      .brand { font-size: 15px; }
+      .status { font-size: 9px; }
+      .hero { padding: 50px 15px; }
+      .radar { width: 170px; height: 170px; }
+      .topline { letter-spacing: 2px; }
+      .department { letter-spacing: 1px; }
+      .year { letter-spacing: 2px; }
+      .tagline { letter-spacing: 1px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="background" aria-hidden="true">
+    <div class="grid"></div>
+    <div class="scanline"></div>
+  </div>
+
+  <header>
+    <div class="brand">JPDP <span style="color:white">/ INTEL</span></div>
+    <div class="status">SYSTEM ONLINE</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="content">
+
+        <div class="topline">
+          STRATEGIC INTELLIGENCE PORTAL
+        </div>
+
+        <div class="radar" aria-hidden="true"></div>
+
+        <h1>
+          BENGKEL<br>
+          <span>PERANCANGAN STRATEGIK</span>
+        </h1>
+
+        <div class="department">
+          JABATAN PERISIKAN DAN PROFILING
+        </div>
+
+        <div class="year">2027</div>
+
+        <div class="tagline">
+          EMPOWERING INTELLIGENCE
+          &nbsp;|&nbsp;
+          DRIVING STRATEGY
+        </div>
+
+        <a class="access-btn" href="#buku-program">
+          [ AKSES BUKU PROGRAM ]
+        </a>
+
+        <div class="footer-text">
+          DIGITAL PROGRAMME BOOK
+          &nbsp; • &nbsp;
+          JPDP 2027
+        </div>
+
+      </div>
+    </section>
+
+    <section class="program" id="buku-program">
+      <h2>BUKU PROGRAM DIGITAL</h2>
+      <p>
+        Selamat datang ke portal rasmi
+        Bengkel Perancangan Strategik 2027.
+      </p>
+
+      <div class="menu">
+        <div class="menu-card">
+          <strong>01 /</strong>
+          ATUR CARA BENGKEL
+        </div>
+
+        <div class="menu-card">
+          <strong>02 /</strong>
+          OBJEKTIF BENGKEL
+        </div>
+
+        <div class="menu-card">
+          <strong>03 /</strong>
+          PROFIL PENGURUSAN
+        </div>
+
+        <div class="menu-card">
+          <strong>04 /</strong>
+          JAWATANKUASA
+        </div>
+
+        <div class="menu-card">
+          <strong>05 /</strong>
+          GALERI PROGRAM
+        </div>
+
+        <div class="menu-card">
+          <strong>06 /</strong>
+          MAKLUMAT BENGKEL
+        </div>
+      </div>
+
+      <p style="font-size:12px">
+        Paparan menu ini ialah demo.
+        Kandungan penuh akan ditambah kemudian.
+      </p>
+    </section>
+  </main>
+
+</body>
+</html>
